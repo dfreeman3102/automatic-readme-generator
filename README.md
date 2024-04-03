@@ -10,3 +10,16 @@ then taken to the corresponding section of the ReadMe.
 ## Table-Of-Contents
 
 [Description](https://github.com/dfreeman3102/automatic-readme-generator#Description)
+[Installation](https://github.com/dfreeman3102/automatic-readme-generator#Installation)
+[Usage](https://github.com/dfreeman3102/automatic-readme-generator#Usage)
+[Contributing](https://github.com/dfreeman3102/automatic-readme-generator#Contributing)
+[Tests](https://github.com/dfreeman3102/automatic-readme-generator#Tests)
+
+
+## Installation
+
+## Usage
+
+## Contributing
+
+## Tests
