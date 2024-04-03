@@ -1,4 +1,4 @@
-const fs = requrie("fs");
+const fs = require("fs");
 const inquire = require("inquirer");
 
 inquire
@@ -33,12 +33,20 @@ inquire
             name:"test",
             message:"What are the tests of your project?"
         },
-
+        {
+            type:"input",
+            name:"github",
+            message:"What is your GitHub Url?"
+        },
+        {
+            type:"input",
+            name:"email",
+            message:"What is your email?"
+        },
     ])
     .then((data) => {
         // TODO: Create a function to write README file
-        function writeToFile(fileName, data) {}
-
+        fs.writeFile("generatedReadMe.md", )
     })
 
 // TODO: Create a function to initialize app
