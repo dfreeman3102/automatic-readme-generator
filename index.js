@@ -2,12 +2,19 @@ const fs = require("fs");
 const inquire = require("inquirer");
 
 inquire
+//prompts to input all relevant data
     .prompt([
         {
             type:"input",
             name:"title",
             message:"What is the title of your project?",
             validate: (input) => !!input || "Cannot be empty",
+        },
+        {
+            type:"list",
+            name:"license",
+            message:"Choose what license to use.",
+            choices:["MIT", "BSD", "CPL"]
         },
         {
             type:"input",
@@ -53,21 +60,24 @@ inquire
         },
     ])
     .then((data) => {
-        // TODO: Create a function to write README file
+        //function to write README file
         fs.writeFile("generatedReadMe.md", `
 # ${data.title}
 
+## License
+* ${data.license}
 
 ## Description
     ${data.description}
         
 ## Table-Of-Contents
-        
-* [Description](https://github.com/dfreeman3102/automatic-readme-generator#Description)
-* [Installation](https://github.com/dfreeman3102/automatic-readme-generator#Installation)
-* [Usage](https://github.com/dfreeman3102/automatic-readme-generator#Usage)
-* [Contributing](https://github.com/dfreeman3102/automatic-readme-generator#Contributing)
-* [Tests](https://github.com/dfreeman3102/automatic-readme-generator#Tests)
+
+* [License](#License)
+* [Description](#Description)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Contributing](#Contributing)
+* [Tests](#Tests)
         
         
 ## Installation
