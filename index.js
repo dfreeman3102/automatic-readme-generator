@@ -1,6 +1,6 @@
 const fs = require("fs");
 const inquire = require("inquirer");
-
+const renderLicense = require("./utils/generateMarkdown.js")
 inquire
 //prompts to input all relevant data
     .prompt([
@@ -14,7 +14,7 @@ inquire
             type:"list",
             name:"license",
             message:"Choose what license to use.",
-            choices:["MIT", "BSD", "CPL"]
+            choices:["MIT", "BSD", "CDDL"]
         },
         {
             type:"input",
@@ -60,45 +60,57 @@ inquire
         },
     ])
     .then((data) => {
-        //function to write README file
-        fs.writeFile("generatedReadMe.md", `
+        // Generate license badge
+        const licenseBadge = renderLicense(data.license);
+    
+        // Generate README content
+        const readmeContent = `
 # ${data.title}
-
+    
 ## License
-* ${data.license}
-
+    ${licenseBadge}
+    
 ## Description
+    
     ${data.description}
-        
-## Table-Of-Contents
-
-* [License](#License)
-* [Description](#Description)
-* [Installation](#Installation)
-* [Usage](#Usage)
-* [Contributing](#Contributing)
-* [Tests](#Tests)
-        
-        
+    
+## Table of Contents
+    
+    - [License](#license)
+    - [Description](#description)
+    - [Installation](#installation)
+    - [Usage](#usage)
+    - [Contributing](#contributing)
+    - [Tests](#tests)
+    - [Questions](#questions)
+    
 ## Installation
+    
     ${data.install}
+    
 ## Usage
+    
     ${data.usage}
+    
 ## Contributing
+    
     ${data.contributing}
+     
 ## Tests
-    ${data.tests}
+    
+    ${data.test}
+    
 ## Questions
-*${data.github}
-*${data.email}
-`,
- (err) =>
-        err ? console.log(err) : console.log("Success!")
-        );
-    })
-
-// TODO: Create a function to initialize app
-function init() {}
-
-// Function call to initialize app
-init();
+    
+    For questions about the project, please contact [${data.github}](${data.github}) via GitHub or email ${data.email}.
+    `;
+    
+        // Write README file
+        fs.writeFile("generatedReadMe.md", readmeContent, (err) => {
+          if (err) {
+            console.error(err);
+          } else {
+            console.log("Success!");
+          }
+        });
+      });

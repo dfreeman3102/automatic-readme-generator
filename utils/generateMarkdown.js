@@ -1,20 +1,12 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
-
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {}
-
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// TODO: Create a function to generate markdown for README
-function generateMarkdown(data) {
-  return `# ${data.title}
-
-`;
+//function that returns a license badge based on which license is passed
+function renderLicense(license) {
+  if(license === "MIT"){
+    return `[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)`
+  } else if (license === "BSD"){
+    return `[![License: BSD](https://img.shields.io/badge/License-BSD-red.svg)](https://opensource.org/licenses/BSD-3-Clause)`
+  } else if (license === "CDDL"){
+    return `[![License: CDDL](https://img.shields.io/badge/License-CDDL-brightgreen.svg)](https://opensource.org/licenses/CDDL-1.0)`
+  }
 }
 
-module.exports = generateMarkdown;
+module.exports = renderLicense;
