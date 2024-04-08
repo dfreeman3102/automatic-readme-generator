@@ -60,15 +60,14 @@ inquire
         },
     ])
     .then((data) => {
-        // Generate license badge
-        const licenseBadge = renderLicense(data.license);
+        // Generate selected license and related info
+        const license = renderLicense(data.license);
     
-        // Generate README content
-        const readmeContent = `
+        // Generate README from user input
+        const readmeInfo = `
 # ${data.title}
     
-## License
-    ${licenseBadge}
+
     
 ## Description
     
@@ -91,7 +90,11 @@ inquire
 ## Usage
     
     ${data.usage}
-    
+
+## License
+
+    ${license}
+
 ## Contributing
     
     ${data.contributing}
@@ -105,8 +108,8 @@ inquire
     For questions about the project, please contact [${data.github}](${data.github}) via GitHub or email ${data.email}.
     `;
     
-        // Write README file
-        fs.writeFile("generatedReadMe.md", readmeContent, (err) => {
+        // Write README file from selected content
+        fs.writeFile("generatedReadMe.md", readmeInfo, (err) => {
           if (err) {
             console.error(err);
           } else {
